@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"html/template"
-	"net/url"
 	"os"
 	"strconv"
 	"time"
@@ -55,12 +54,8 @@ func main() {
 	template.Must(template.New("sitemap").
 		Funcs(template.FuncMap{
 			"html": func(s string) template.HTML { return template.HTML(s) },
-			"urlquote": func(s string) (template.HTML, error) {
-				u, err := url.Parse(s)
-				if err != nil {
-					return template.HTML(""), err
-				}
-				return template.HTML(u.String()), nil
+			"urlquote": func(s string) string {
+				return s
 			},
 			"lastmod": func(u uint64) string {
 				return time.Unix(int64(u), 0).Format("2006-01-02")
