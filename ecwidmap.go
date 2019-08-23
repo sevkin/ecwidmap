@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sevkin/ecwid"
+	"github.com/sevkin/go-ecwid"
 )
 
 const sitemap = `{{"<?"|html}}xml version="1.0" encoding="UTF-8"?>
