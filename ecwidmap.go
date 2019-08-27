@@ -14,6 +14,7 @@ import (
 
 const sitemap = `{{"<?"|html}}xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>{{root|urlquote}}</loc></url>
 {{$daily := .Daily}}{{range .Products}}<url><loc>{{.URL|urlquote}}</loc><lastmod>{{.UpdateTimestamp|lastmod}}</lastmod>{{if $daily}}<changefreq>daily</changefreq>{{end}}</url>
 {{end}}{{range .Categories}}<url><loc>{{.URL|urlquote}}</loc>{{if $daily}}<changefreq>daily</changefreq>{{end}}</url>
 {{end}}</urlset>`
@@ -59,6 +60,13 @@ func main() {
 			},
 			"lastmod": func(u uint64) string {
 				return time.Unix(int64(u), 0).Format("2006-01-02")
+			},
+			"root": func() (string, error) {
+				profile, err := store.StoreProfileGet()
+				if err != nil {
+					return "", err
+				}
+				return profile.GeneralInfo.StoreURL, nil
 			},
 		}).
 		Parse(sitemap)).

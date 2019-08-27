@@ -1,6 +1,5 @@
 module ecwidmap
 
-// github.com/sevkin/go-ecwid v0.0.0
-// replace github.com/sevkin/go-ecwid => ../go-ecwid
+require github.com/sevkin/go-ecwid v0.0.0-20190827102626-b2c1f3a2646f
 
-require github.com/sevkin/go-ecwid v0.0.0-20190823130339-fa69e3940fa9
+// replace github.com/sevkin/go-ecwid => ../go-ecwid
