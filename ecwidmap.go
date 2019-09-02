@@ -49,7 +49,7 @@ func main() {
 		os.Exit(2)
 	}
 
-	store := ecwid.New(storeID, token)
+	store := ecwid.New(ecwid.ID(storeID), token)
 	//store.SetDebug(true)
 
 	template.Must(template.New("sitemap").
